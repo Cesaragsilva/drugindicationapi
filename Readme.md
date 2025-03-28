@@ -46,8 +46,8 @@ This project follows **Clean Architecture** and **Clean Code** principles. It is
 ## Database Access
 Open MongoDB Compass or any mongo client.
 
-Connect to the server localhost:27017.
-Open the database DrugIndicationDb
+- Connect to the server mongodb://localhost:27017
+- Open the database DrugIndicationDb
 ---
 
 ## CI/CD Pipeline
