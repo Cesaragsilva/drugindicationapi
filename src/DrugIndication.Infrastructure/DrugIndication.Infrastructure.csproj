@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="MongoDB.Driver" Version="3.2.1" />
+
+		<ProjectReference Include="..\DrugIndication.Application\DrugIndication.Application.csproj" />		
+		<ProjectReference Include="..\DrugIndication.Domain\DrugIndication.Domain.csproj" />
+	</ItemGroup>
+
+</Project>

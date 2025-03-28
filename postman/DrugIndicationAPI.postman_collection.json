@@ -1,0 +1,219 @@
+{
+  "info": {
+    "name": "DrugIndication API",
+    "_postman_id": "7a2f62c0-03b4-4c59-8c47-fake-id-for-demo",
+    "description": "Cole\u00e7\u00e3o completa para testar a API DrugIndication",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth - Register",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/auth/register",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "auth",
+            "register"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"admin@test.com\",\n  \"passwordHash\": \"123456\",\n  \"role\": \"Admin\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Auth - Login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var jsonData = pm.response.json();",
+              "pm.environment.set(\"jwt_token\", jsonData.token);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/auth/login",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "auth",
+            "login"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"admin@test.com\",\n  \"passwordHash\": \"123456\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Programs - Get All",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/programs",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "programs"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Programs - Get By Id",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/programs/1",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "programs",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Programs - Create",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/programs",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "programs"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"1\",\n  \"programName\": \"Dupixent MyWay Copay Card\",\n  \"programType\": \"Coupon\",\n  \"coverageEligibilities\": [\n    \"Commercially insured\"\n  ],\n  \"requirements\": [\n    {\n      \"name\": \"us_residency\",\n      \"value\": \"true\"\n    }\n  ],\n  \"benefits\": [\n    {\n      \"name\": \"max_annual_savings\",\n      \"value\": \"13000.00\"\n    }\n  ],\n  \"forms\": [\n    {\n      \"name\": \"Enrollment Form\",\n      \"link\": \"https://example.com\"\n    }\n  ],\n  \"funding\": {\n    \"evergreen\": \"true\",\n    \"currentFundingLevel\": \"N/A\"\n  },\n  \"details\": [\n    {\n      \"eligibility\": \"Must be a legal resident\",\n      \"program\": \"Pays up to $13,000 annually\",\n      \"renewal\": \"Auto-renewed every year\",\n      \"income\": \"No income requirement\"\n    }\n  ]\n}"
+        }
+      }
+    },
+    {
+      "name": "Programs - Update",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/programs/1",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "programs",
+            "1"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"1\",\n  \"programName\": \"Updated Program Name\",\n  \"programType\": \"Coupon\",\n  \"coverageEligibilities\": [\n    \"Commercially insured\"\n  ],\n  \"requirements\": [\n    {\n      \"name\": \"us_residency\",\n      \"value\": \"true\"\n    }\n  ],\n  \"benefits\": [\n    {\n      \"name\": \"max_annual_savings\",\n      \"value\": \"13000.00\"\n    }\n  ],\n  \"forms\": [\n    {\n      \"name\": \"Enrollment Form\",\n      \"link\": \"https://example.com\"\n    }\n  ],\n  \"funding\": {\n    \"evergreen\": \"true\",\n    \"currentFundingLevel\": \"Updated\"\n  },\n  \"details\": [\n    {\n      \"eligibility\": \"Updated eligibility\",\n      \"program\": \"Updated program\",\n      \"renewal\": \"Updated renewal\",\n      \"income\": \"Updated income\"\n    }\n  ]\n}"
+        }
+      }
+    },
+    {
+      "name": "Programs - Delete",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/programs/1",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "programs",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Programs - Unauthorized Access (invalid token)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer invalid-token-123"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/programs",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "programs"
+          ]
+        }
+      }
+    }
+  ]
+}
